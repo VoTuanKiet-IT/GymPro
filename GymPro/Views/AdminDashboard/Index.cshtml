@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Trang quản trị hệ thống</h2>
+
+<div class="card p-4 shadow-sm">
+    <h4>Xin chào, @User.Identity.Name!</h4>
+    <p>Bạn đang đăng nhập với quyền <b>Admin</b>.</p
+</div>
+<div class="container mt-4">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="/HoiVien/HoiVienListView">Quản lý hội viên</a>
+        </li>
+        <li class="list-group-item">
+            <a href="/HuanLuyenVien/HLVListView">Quản lý huấn luyện viên</a>
+        </li>
+        <li class="list-group-item">
+            <a href="/GoiTap/GoiTapListView">Quản lý gói tập</a>
+        </li>
+        <li class="list-group-item">
+            <a href="/SanPham/SanPhamListView">🛒 Cửa hàng Gym</a>
+        </li>
+    </ul>
+</div>

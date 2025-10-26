@@ -1,0 +1,57 @@
+﻿@model GymPro.Models.GoiTapViewModel
+
+@{
+    ViewBag.Title = "GoiTapListView";
+}
+
+<h2>Danh Sách Các Gói Tập</h2>
+@if (User.IsInRole("Admin"))
+{
+    <a href="@Url.Action("Thêm gói tập", "ThemGoiTap")" class="btn btn-primary">+ Thêm gói tập</a>
+}
+
+<table class="table">
+    <tr>
+        <th>STT</th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoiTaps.FirstOrDefault().goitap_tengoi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoiTaps.FirstOrDefault().goitap_gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoiTaps.FirstOrDefault().goitap_thoihan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GoiTaps.FirstOrDefault().goitap_motagoi)
+        </th>
+        <th></th>
+    </tr>
+    @{ int stt = 1; }
+    @foreach (var item in Model.GoiTaps)
+    {
+        <tr>
+            <td>
+                @stt
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.goitap_tengoi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.goitap_gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.goitap_thoihan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.goitap_motagoi)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "SuaGoiTap", new { id = item.goitap_ma }) |
+                @Html.ActionLink("Details", "Details", new { id = item.goitap_ma }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.goitap_ma })
+            </td>
+        </tr>
+        stt++;
+    }
+</table>

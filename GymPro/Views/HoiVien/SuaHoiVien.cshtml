@@ -1,0 +1,132 @@
+﻿@model GymPro.Models.HoiVienTableRow
+
+@{
+    ViewBag.Title = "Sửa Hội Viên";
+}
+
+<h2>Sửa Hội Viên</h2>
+
+@using (Html.BeginForm("SuaHoiVien", "HoiVien", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Thông tin Hội Viên</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.hoiviens.hoivien_ma)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hoiviens.hoivien_hodem, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.hoiviens.hoivien_hodem, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.hoiviens.hoivien_hodem, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hoiviens.hoivien_ten, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.hoiviens.hoivien_ten, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.hoiviens.hoivien_ten, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hoiviens.hoivien_email, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.hoiviens.hoivien_email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.hoiviens.hoivien_email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hoiviens.hoivien_dienthoai, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.hoiviens.hoivien_dienthoai, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.hoiviens.hoivien_dienthoai, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hoiviens.hoivien_gioitinh, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="radio">
+                <label>
+                    @Html.RadioButtonFor(model => model.hoiviens.hoivien_gioitinh, true, new { @id = "gioitinh_nam" }) Nam
+                </label>
+                <label>
+                    @Html.RadioButtonFor(model => model.hoiviens.hoivien_gioitinh, false, new { @id = "gioitinh_nu" }) Nữ
+                </label>
+            </div>
+            @Html.ValidationMessageFor(model => model.hoiviens.hoivien_gioitinh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ngaysinh, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ngaysinh, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+            @Html.ValidationMessageFor(model => model.ngaysinh, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hoiviens.hoivien_diachi, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.hoiviens.hoivien_diachi, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.hoiviens.hoivien_diachi, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.hoivien_anhdaidien_file, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="hoivien_anhdaidien_file" id="hoivien_anhdaidien_file" class="form-control" />
+            @if (!string.IsNullOrEmpty(Model.hoiviens.hoivien_hinhanh))
+            {
+                <img id="imagePreview" src="@Url.Content(Model.hoiviens.hoivien_hinhanh)" alt="Ảnh đại diện" style="width:100px; height:auto; margin-top: 10px;" />
+            }
+            else
+            {
+                <img id="imagePreview" src="#" alt="Ảnh đại diện" style="width:100px; height:auto; margin-top: 10px; display: none;" />
+            }
+            @Html.ValidationMessageFor(model => model.hoivien_anhdaidien_file, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @Html.HiddenFor(model => model.ngaydangky)
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+
+}
+
+<div>
+    @Html.ActionLink("Quay lại danh sách", "HoiVienListView")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#hoivien_anhdaidien_file").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        $("#imagePreview").attr('src', e.target.result);
+                        $("#imagePreview").show();
+                    }
+
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    $("#imagePreview").hide();
+                }
+            });
+        });
+    </script>
+}

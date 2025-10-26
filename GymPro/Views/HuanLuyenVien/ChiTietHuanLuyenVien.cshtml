@@ -1,0 +1,112 @@
+﻿@model GymPro.Models.ChiTietHuanLuyenVienViewModel
+
+<div>
+    <h4>HuanLuyenVien</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HuanLuyenViens.hlv_hodem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HuanLuyenViens.hlv_hodem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuanLuyenViens.hlv_ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HuanLuyenViens.hlv_ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuanLuyenViens.hlv_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HuanLuyenViens.hlv_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuanLuyenViens.hlv_dienthoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HuanLuyenViens.hlv_dienthoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuanLuyenViens.hlv_gioitinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gioitinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuanLuyenViens.hlv_ngaysinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(Model => Model.ngaysinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuanLuyenViens.hlv_diachi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HuanLuyenViens.hlv_diachi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuanLuyenViens.hlv_hinhanh)
+        </dt>
+
+        <dd>
+            <img src="@Model.HuanLuyenViens.hlv_hinhanh" alt="Hình huấn luyện viên" style="max-width: 100px; max-height: 100px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HuanLuyenViens.hlv_ngaynhanviec)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaynhanviec)
+        </dd>
+
+    </dl>
+    <hr />
+    <br />
+    <h5>Các Chuyên Môn</h5>
+    <hr />
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DSChuyenMons.FirstOrDefault().chuyenmon_ten)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.DSChuyenMons)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.chuyenmon_ten)
+                    </td>
+                    <td>
+                        @* You can add action links for each specialization if needed *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HuanLuyenViens.hlv_ma }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

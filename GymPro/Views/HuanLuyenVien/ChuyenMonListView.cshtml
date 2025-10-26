@@ -1,0 +1,39 @@
+﻿@model IEnumerable<GymPro.Models.ChuyenMon>
+
+@{
+    ViewBag.Title = "ChuyenMonListView";
+}
+
+<h2>ChuyenMonListView</h2>
+
+<p>
+    @Html.ActionLink("Tạo mới..", "ThemChuyenMon")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.chuyenmon_ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.chuyenmon_mota)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.chuyenmon_ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.chuyenmon_mota)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.chuyenmon_ma }) |
+            @Html.ActionLink("Details", "Details", new { id=item.chuyenmon_ma }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.chuyenmon_ma })
+        </td>
+    </tr>
+}
+
+</table>

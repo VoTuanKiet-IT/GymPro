@@ -1,0 +1,83 @@
+﻿@model GymPro.Models.HuanLuyenVien
+
+@{
+    ViewBag.Title = "HLVListView";
+}
+
+<h2>Danh Sách Huấn Luyện Viên</h2>
+@if (User.IsInRole("Admin,PT"))
+{
+    <a href="@Url.Action("Thêm huấn luyện viên", "ThemHuanLuyenVien")" class="btn btn-primary">+ Thêm huấn luyện viên (PT)</a>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.huanluyenvien.FirstOrDefault().HuyenLuanViens.hlv_hodem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.huanluyenvien.FirstOrDefault().HuyenLuanViens.hlv_ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.huanluyenvien.FirstOrDefault().HuyenLuanViens.hlv_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.huanluyenvien.FirstOrDefault().HuyenLuanViens.hlv_dienthoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.huanluyenvien.FirstOrDefault().HuyenLuanViens.hlv_ngaysinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.huanluyenvien.FirstOrDefault().HuyenLuanViens.hlv_diachi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.huanluyenvien.FirstOrDefault().HuyenLuanViens.hlv_gioitinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.huanluyenvien.FirstOrDefault().HuyenLuanViens.hlv_ngaynhanviec)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.huanluyenvien.FirstOrDefault().HuyenLuanViens.hlv_hinhanh)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.huanluyenvien)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HuyenLuanViens.hlv_hodem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HuyenLuanViens.hlv_ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HuyenLuanViens.hlv_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HuyenLuanViens.hlv_dienthoai)
+            </td>
+            <td>
+                @item.ngaysinh.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HuyenLuanViens.hlv_diachi)
+            </td>
+            <td>
+                @item.gioitinh
+            </td>
+            <td>
+                @item.ngaynhanviec.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                <img src="@item.HuyenLuanViens.hlv_hinhanh" alt="Hình huấn luyện viên" style="max-width: 100px; max-height: 100px;" />
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Sửa", "SuaHuanLuyenVien", new { id = item.HuyenLuanViens.hlv_ma }) |
+                @Html.ActionLink("Thông tin", "ChiTietHuanLuyenVien", new { id = item.HuyenLuanViens.hlv_ma }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.HuyenLuanViens.hlv_ma })
+            </td>
+        </tr>
+    }
+</table>

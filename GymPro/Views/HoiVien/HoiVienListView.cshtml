@@ -1,0 +1,81 @@
+﻿@model GymPro.Models.HoiVien
+
+<h2>Danh sách hội viên</h2>
+
+@if (User.IsInRole("Admin,PT"))
+{
+    <a href="@Url.Action("Thêm hội viên...", "ThemHoiVien")" class="btn btn-primary">+ Thêm hội viên</a>
+}
+
+<table class="table">
+    <!-- bảng danh sách hội viên -->
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.hoivien.FirstOrDefault().hoiviens.hoivien_hodem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoivien.FirstOrDefault().hoiviens.hoivien_ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoivien.FirstOrDefault().hoiviens.hoivien_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoivien.FirstOrDefault().hoiviens.hoivien_dienthoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoivien.FirstOrDefault().hoiviens.hoivien_gioitinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoivien.FirstOrDefault().hoiviens.hoivien_ngaysinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoivien.FirstOrDefault().hoiviens.hoivien_diachi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoivien.FirstOrDefault().hoiviens.hoivien_ngaydangky)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hoivien.FirstOrDefault().hoiviens.hoivien_hinhanh)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.hoivien)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.hoiviens.hoivien_hodem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hoiviens.hoivien_ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hoiviens.hoivien_email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hoiviens.hoivien_dienthoai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gioitinh)
+            </td>
+            <td>
+                @item.ngaysinh.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hoiviens.hoivien_diachi)
+            </td>
+            <td>
+                @item.ngaydangky.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                <img src="@item.hoiviens.hoivien_hinhanh" alt="Hình hội viên" style="max-width: 100px; max-height: 100px;" />
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "SuaHoiVien", new { id = item.hoiviens.hoivien_ma }) |
+                @Html.ActionLink("Details", "ChiTietHoiVien", new { id = item.hoiviens.hoivien_ma }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.hoiviens.hoivien_ma })
+            </td>
+        </tr>
+    }
+
+</table>

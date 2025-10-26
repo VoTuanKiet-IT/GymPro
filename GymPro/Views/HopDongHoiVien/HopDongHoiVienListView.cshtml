@@ -1,0 +1,81 @@
+﻿@model GymPro.Models.HopDongHoiVienViewModel
+
+
+<h2>Danh sách các hợp đồng hội viên</h2>
+
+@if (User.IsInRole("Admin,PT"))
+{
+    <a href="@Url.Action("Tạo mới...", "ThemHopDongHoiVien")" class="btn btn-primary">+ Thêm hợp đồng hội viên</a>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HopDongHoiViens.FirstOrDefault().hopdonghoivien.hdhoivien_ma)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HopDongHoiViens.FirstOrDefault().hopdonghoivien.hoivien_ma)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HopDongHoiViens.FirstOrDefault().hoivien.hoivien_hodem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HopDongHoiViens.FirstOrDefault().hoivien.hoivien_ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HopDongHoiViens.FirstOrDefault().goitap.goitap_tengoi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HopDongHoiViens.FirstOrDefault().goitap.goitap_thoihan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HopDongHoiViens.FirstOrDefault().hopdonghoivien.hdhoivien_ngaybatdau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HopDongHoiViens.FirstOrDefault().hopdonghoivien.hdhoivien_ngayketthuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HopDongHoiViens.FirstOrDefault().hopdonghoivien.hdhoivien_trangthai)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.HopDongHoiViens)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.hopdonghoivien.hdhoivien_ma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hopdonghoivien.hoivien_ma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hoivien.hoivien_hodem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hoivien.hoivien_ten)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.goitap.goitap_tengoi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.goitap.goitap_thoihan)
+            </td>
+            <td>
+                @item.ngaybatdau
+            </td>
+            <td>
+                @item.ngayketthuc
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hopdonghoivien.hdhoivien_trangthai)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.hopdonghoivien.hdhoivien_ma }) |
+                @Html.ActionLink("Details", "Details", new { id = item.hopdonghoivien.hdhoivien_ma }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.hopdonghoivien.hdhoivien_ma })
+            </td>
+        </tr>
+    }
+
+</table>

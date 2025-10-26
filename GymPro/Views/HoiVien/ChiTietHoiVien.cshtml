@@ -1,0 +1,180 @@
+﻿@model GymPro.Models.ChiTietHoiVienViewModel
+
+<div>
+    <h4>HoiVien</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hoivien.hoiviens.hoivien_hodem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoivien.hoiviens.hoivien_hodem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hoivien.hoiviens.hoivien_ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoivien.hoiviens.hoivien_ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hoivien.hoiviens.hoivien_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoivien.hoiviens.hoivien_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hoivien.hoiviens.hoivien_dienthoai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoivien.hoiviens.hoivien_dienthoai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hoivien.gioitinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoivien.hoiviens.hoivien_gioitinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hoivien.hoiviens.hoivien_ngaysinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoivien.ngaysinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hoivien.hoiviens.hoivien_diachi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoivien.hoiviens.hoivien_diachi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hoivien.hoiviens.hoivien_ngaydangky)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hoivien.ngaydangky)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hoivien.hoiviens.hoivien_hinhanh)
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.hoivien.hoiviens.hoivien_hinhanh)" alt="Hình hội viên" style="max-width: 100px; max-height: 100px;" />
+        </dd>
+
+    </dl>
+
+    <br />
+    <h5>Hợp đồng hội viên</h5>
+    <hr />
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.listhopdong.FirstOrDefault().goitap.goitap_tengoi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listhopdong.FirstOrDefault().goitap.goitap_thoihan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listhopdong.FirstOrDefault().hopdonghoivien.hdhoivien_ngaybatdau)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listhopdong.FirstOrDefault().hopdonghoivien.hdhoivien_ngayketthuc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listhopdong.FirstOrDefault().hopdonghoivien.hdhoivien_trangthai)
+            </th>
+        </tr>
+        @foreach (var item in Model.listhopdong)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.goitap.goitap_tengoi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.goitap.goitap_thoihan)
+                </td>
+                <td>
+                    @item.ngaybatdau.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @item.ngayketthuc.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hopdonghoivien.hdhoivien_trangthai)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    <br />
+    <h5>Lịch tập với PT</h5>
+    <p>
+        @Html.ActionLink("Đăng ký lịch tập",
+                         "DangKyLichVoiPT",
+                         "LichTap", // <-- Controller Name
+                         new { id = Model.hoivien.hoiviens.hoivien_ma }, // <-- Route Values
+                         null)
+    </p>
+    <hr />
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.listlichtap.FirstOrDefault().lichtapvoipt.lichtap_ngaytap)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listlichtap.FirstOrDefault().huanluyenvien.TenDayDu)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.listlichtap.FirstOrDefault().catap.catap_ten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listlichtap.FirstOrDefault().catap.catap_mota)
+            </th>
+        </tr>
+        @foreach (var item in Model.listlichtap)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ngaytap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.huanluyenvien.TenDayDu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.catap.catap_ten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.catap.catap_mota)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.hoivien.hoiviens.hoivien_ma }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
